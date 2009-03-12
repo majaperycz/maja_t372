@@ -1,0 +1,33 @@
+package maja_t372;
+
+import battlecode.common.*;
+
+/**
+ *
+ * @author dtldarek
+ */
+public class Rand {
+	int state;
+	static final int tab[];
+	/* PUT CODE HERE */	
+	Rand()
+	{
+		state = (int) Double.doubleToRawLongBits(
+				Math.sin((Clock.getRoundNum() + 
+				Clock.getBytecodeNum() + 16) * 2345));
+        if (state < 0)
+            state = -state;
+	}
+	int get()
+	{
+		return tab[state++ % tab.length];
+	}
+	int getInt(int n)
+	{
+		return get() % n;
+	}
+	boolean getBoolean()
+	{
+		return (get() & 1) == 0;
+	}
+}
